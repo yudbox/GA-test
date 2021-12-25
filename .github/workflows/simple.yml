@@ -1,0 +1,14 @@
+name: Shell Commands
+# выбираем при каком действии будут запускаться экшн, можно писать on: [push, pull]
+on: [push]
+
+jobs:
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo a string
+        run: echo "Hello world"
+      - name: multiline script
+        run: |
+          node -v
+          npm -v

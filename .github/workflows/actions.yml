@@ -10,8 +10,15 @@ jobs:
         run: |
           pwd
           ls -la
-
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+          # git clone git@github:$GITHUB_REPOSITORY
+          # git checkout $GITHUB_SHA
       - name: Checkout
+        # action checkout копирует все файлы из репозитория в рабочую папку экшена
+        # /home/runner/work/GA-test/GA-test
         uses: actions/checkout@v2.4.0
 
       - name: List files after checkout

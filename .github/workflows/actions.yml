@@ -1,0 +1,23 @@
+name: Actions Workflow
+
+on: ["push"]
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple JS Action
+        # id для шага по которому можно обратится вдругих шагах
+        id: greet
+        # сторонний скрипт который запускается со стороннего репозитория гитхаба
+        # https://github.com/actions/hello-world-javascript-action
+        uses: actions/hello-world-javascript-action@v1.1
+        # так подключаются входяшие данные (input) описано в документации
+        with:
+          # ключ из документации для ввода данных в скрипт
+          who-to-greet: "Alex"
+
+      # второй шаг который обращается данным первого id = greet
+      # outputs исходящие данные скрипта, time - ключ указаный в документации
+      - name: Log Greeing Time
+        run: echo "${{ steps.greet.outputs.time }}"

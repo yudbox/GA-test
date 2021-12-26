@@ -11,9 +11,16 @@ jobs:
           pwd
           ls -la
           echo $GITHUB_SHA
+          # выведет f9d9f0b7ca89012d8acd20b9a739745aee8cd7b3
+
           echo $GITHUB_REPOSITORY
+          # выведет yudbox/GA-test
+
           echo $GITHUB_WORKSPACE
+          #  выведет/home/runner/work/GA-test/GA-test
+
           echo "${{ github.token }}"
+
           # git clone git@github:$GITHUB_REPOSITORY
           # git checkout $GITHUB_SHA
       - name: Checkout

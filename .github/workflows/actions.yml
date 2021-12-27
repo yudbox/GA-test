@@ -6,10 +6,11 @@ name: Actions Workflow
 on:
   # риггер срабатывания по графику
   schedule:
+    # https://crontab.guru/#*_*_*_*_* он лайн генератор
     # для триггера используется cron и интервал срабатывания каждые 5 мин
     - cron: "0/5 * * * *"
   # push пустой обект
-  push:
+  # push:
 
   # pull_request объект с ключом types и в неп перечислены триггеры срабатывания
   # Activity types

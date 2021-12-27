@@ -4,7 +4,12 @@ name: Actions Workflow
 
 # если нужно передать дополнительные параметры триггеру - используется объект
 on:
-  # риггер срабатывания по графику
+  # для ручного запуска jobs можно отправить реквест на определенный роут
+  # https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#repository_dispatch
+  repository_dispatch:
+    types: [any_request_key]
+
+  # триггер срабатывания по графику
   schedule:
     - cron: "0/5 * * * *"
     # https://crontab.guru/#*_*_*_*_* он лайн генератор

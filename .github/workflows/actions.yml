@@ -26,12 +26,8 @@ jobs:
           pwd
           ls -la
           echo $GITHUB_SHA
-<<<<<<< HEAD
           # sha это id последнего коммита с которым запушили ветку на гитхаб
           # выведет f9d9f0b7ca89012d8acd20b9a739745aee8cd7b3
-=======
-          # выведет   f9d9f0b7ca89012d8acd20b9a739745aee8cd7b3   
->>>>>>> 8d139e8f42ab3f95083f99bb5a910959ed3d0680
 
           echo $GITHUB_REPOSITORY
           # выведет yudbox/GA-test

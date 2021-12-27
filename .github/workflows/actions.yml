@@ -11,7 +11,7 @@ jobs:
           pwd
           ls -la
           echo $GITHUB_SHA
-          # выведет f9d9f0b7ca89012d8acd20b9a739745aee8cd7b3
+          # выведет   f9d9f0b7ca89012d8acd20b9a739745aee8cd7b3   
 
           echo $GITHUB_REPOSITORY
           # выведет yudbox/GA-test

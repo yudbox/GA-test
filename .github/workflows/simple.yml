@@ -1,6 +1,8 @@
+# https://docs.github.com/en
+
 name: Shell Commands
 # выбираем при каком действии будут запускаться экшн, можно писать on: [push, pull]
-# on: [push]
+on: [push]
 
 jobs:
   run-shell-command:

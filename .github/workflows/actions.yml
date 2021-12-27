@@ -1,6 +1,21 @@
 name: Actions Workflow
+# это способ записи триггеров в виде массива
+# on: [push, pull_request]
 
-on: ["push"]
+# если нужно передать дополнительные параметры триггеру - используется объект
+on:
+  # риггер срабатывания по графику
+  schedule:
+    # для триггера используется cron и интервал срабатывания каждые 5 мин
+    - cron: "0/5 * * * *"
+  # push пустой обект
+  push:
+
+  # pull_request объект с ключом types и в неп перечислены триггеры срабатывания
+  # Activity types
+  # https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
+  pull_request:
+    types: [closed, assigned, opened, reopened]
 
 jobs:
   run-github-actions:
@@ -11,6 +26,7 @@ jobs:
           pwd
           ls -la
           echo $GITHUB_SHA
+          # sha это id последнего коммита с которым запушили ветку на гитхаб
           # выведет f9d9f0b7ca89012d8acd20b9a739745aee8cd7b3
 
           echo $GITHUB_REPOSITORY

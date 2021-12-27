@@ -1,0 +1,40 @@
+name: ENV Variables
+on: push
+env:
+  WF_ENV: Avalible to all jobs
+
+jobs:
+  log-env:
+    runs-on: ubuntu-latest
+    env: 
+      JOB_ENV: Avalible inside log-env job
+    steps:
+      - name: Log ENV Variables
+        env: 
+          STEP_ENV: Avalible inside step only
+        run: |
+        echo "Variables WF_ENV = ${ WF_ENV }"
+        echo "Variables JOB_ENV = ${ JOB_ENV }"
+        echo "Variables STEP_ENV = ${ STEP_ENV }"
+      - name: Log ENV 2
+        run: |
+        echo "Variables WF_ENV = ${ WF_ENV }"
+        echo "Variables JOB_ENV = ${ JOB_ENV }"
+        echo "Variables STEP_ENV = ${ STEP_ENV }"
+  log-default-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Default ENV Variables
+        run: |
+        echo "Variables HOME = ${ HOME }"
+        echo "Variables GITHUB_WORKFLOW = ${ GITHUB_WORKFLOW }"
+        echo "Variables GITHUB_ACTION = ${ GITHUB_ACTION }"
+        echo "Variables GITHUB_ACTIONS = ${ GITHUB_ACTIONS }"
+        echo "Variables GITHUB_REPOSITORY = ${ GITHUB_REPOSITORY }"
+        echo "Variables GITHUB_EVENT_NAME = ${ GITHUB_EVENT_NAME }"
+        echo "Variables GITHUB_WORKSPACE = ${ GITHUB_WORKSPACE }"
+        echo "Variables GITHUB_SHA = ${ GITHUB_SHA }"
+        echo "Variables GITHUB_REF = ${ GITHUB_REF }"
+        echo "Variables WF_ENV = ${ WF_ENV }"
+        echo "Variables JOB_ENV = ${ JOB_ENV }"
+        echo "Variables STEP_ENV = ${ STEP_ENV }"

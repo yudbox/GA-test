@@ -7,13 +7,19 @@ on: [push]
 jobs:
   run-shell-command:
     runs-on: ubuntu-latest
+    # указываем максимольное время выполнения работы перез тем как github отмение ее, по умолчанию 6 часов
+    # timeout-minutes: 360
     steps:
       - name: Echo a string
         run: echo "Hello world"
+        # запустит все последующие шаги если любой  предыдущий зафейлится
+        continue-on-error: true
       - name: multiline script
         run: |
           node -v
           npm -v
+        # указываем максимольное время выполнения ifuf перез тем как github отмение его, по умолчанию 0
+        # timeout-minutes: 0
       - name: python Commands
         run: |
           import platform

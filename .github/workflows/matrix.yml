@@ -1,0 +1,15 @@
+name: matrix
+on: push
+
+jobs:
+  change-node-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log node version
+        run: node -v
+        # https://github.com/actions/setup-node
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "10"
+      - name: Log node version after
+        run: node -v

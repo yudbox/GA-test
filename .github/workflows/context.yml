@@ -1,6 +1,6 @@
 name: Context file
 # documentation https://docs.github.com/en/actions/learn-github-actions/contexts
-on: push
+on: [push, pull_request]
 
 jobs:
   functions:
@@ -13,13 +13,19 @@ jobs:
           echo ${{ endsWith( 'hello', 'lo' ) }}
           echo ${{ format( 'hello {0} {1} {2}', 'World', '!', '!' ) }}
   one:
-    runs-on: ubuntu-latest
+    runs-on:
+      ubuntu-latest
+      # работа не запуститься если условие не совпадает. github.event_name берется из контекста github, переменная GITHUB_CONTEXT
+    if: github.event_name == 'push'
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Dump job context
+        # шаг запуститься если функция failure() вернет true, это сработает если верхние шаги потерпели неудачу
+        # также можно не запускать  шаг если условие из steps, STEPS_CONTEXT не выполнится
+        if: failure()
         env:
           JOB_CONTEXT: ${{ toJSON(job) }}
         run: echo "$JOB_CONTEXT"
@@ -28,6 +34,8 @@ jobs:
           STEPS_CONTEXT: ${{ toJSON(steps) }}
         run: echo "$STEPS_CONTEXT"
       - name: Dump runner context
+        # даже если другие шагт зафейслится этот шаг выполнится всегда
+        if: always()
         env:
           RUNNER_CONTEXT: ${{ toJSON(runner) }}
         run: echo "$RUNNER_CONTEXT"

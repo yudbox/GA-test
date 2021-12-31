@@ -9,6 +9,7 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         node_version: [6, 8, 10]
+      max-parallel: 2
     # операционная система берется из контекста матрицы
     runs-on: ${{ matrix.os }}
     steps:

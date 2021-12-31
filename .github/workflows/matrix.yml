@@ -9,7 +9,21 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         node_version: [6, 8, 10]
-      max-parallel: 2
+        # из 9и работ запустит только 2е паралелльно и следующие работы будут запускаться не более двух за раз
+        # max-parallel: 2
+
+        # в матрицу можно добавлять новые елементы
+        # и переменные в контекст, как is_ubuntu_12
+        # а также исключать елементы, как ubuntu 6 и macos 6
+        include:
+          - os: ubuntu-latest
+            node_version: 12
+            is_ubuntu_12: "true"
+        exclude:
+          - os: ubuntu-latest
+            node_version: 6
+          - os: macos-latest
+            node_version: 6
     # операционная система берется из контекста матрицы
     runs-on: ${{ matrix.os }}
     steps:

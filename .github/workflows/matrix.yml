@@ -3,13 +3,21 @@ on: push
 
 jobs:
   change-node-version:
-    runs-on: ubuntu-latest
+    strategy:
+      # матрица запускает что то вроде цикла который буден запускаться столько сколько есть аргу ентов у переменных ниже
+      # запустится 9 раз чтоб у каждой os запутить нужную версию node_version
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        node_version: [6, 8, 10]
+    # операционная система берется из контекста матрицы
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Log node version
         run: node -v
         # https://github.com/actions/setup-node
       - uses: actions/setup-node@v2
         with:
-          node-version: "10"
+          # версия берется из контекста матрицы
+          node-version: ${{ matrix.node_version }}
       - name: Log node version after
         run: node -v

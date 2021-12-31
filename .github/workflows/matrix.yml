@@ -13,12 +13,12 @@ jobs:
         # max-parallel: 2
 
         # в матрицу можно добавлять новые елементы
-        # и переменные в контекст, как is_ubuntu_12
+        # и переменные в контекст к уже сеществующим элементам, как is_ubuntu_8
         # а также исключать елементы, как ubuntu 6 и macos 6
         include:
           - os: ubuntu-latest
-            node_version: 12
-            is_ubuntu_12: "true"
+            node_version: 8
+            is_ubuntu_8: "true"
         exclude:
           - os: ubuntu-latest
             node_version: 6
@@ -26,6 +26,8 @@ jobs:
             node_version: 6
     # операционная система берется из контекста матрицы
     runs-on: ${{ matrix.os }}
+    env:
+      IS_UBUNTU_8: ${{ matrix.is_ubuntu_8 }}
     steps:
       - name: Log node version
         run: node -v
@@ -35,4 +37,6 @@ jobs:
           # версия берется из контекста матрицы
           node-version: ${{ matrix.node_version }}
       - name: Log node version after
-        run: node -v
+        run: |
+          node -v
+          echo $IS_UBUNTU_8

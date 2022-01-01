@@ -1,21 +1,22 @@
 name: Filtering Workflow by Branches, Tags & Paths
 
 on:
-  push:
-    branches:
-      - master
-      - "feature/*" # matches feature/featA, feature/featB, does't match feature/feat/A
-      - "feature/**" # matches feature/feat/A
-      - "!feature/featC" # exclude branch from triggring
-    # branches-ignore: # methods exclude each other
-    #   - feature/featC
+  pull_request:
+  # push:
+  #   branches:
+  #     - master
+  #     - "feature/*" # matches feature/featA, feature/featB, does't match feature/feat/A
+  #     - "feature/**" # matches feature/feat/A
+  #     - "!feature/featC" # exclude branch from triggring
+  #   # branches-ignore: # methods exclude each other
+  #   #   - feature/featC
 
-    tags:
-      - v1.*
+  #   tags:
+  #     - v1.*
 
-    paths:
-      - "**.js"
-      - "!filename.js"
+  #   paths:
+  #     - "**.js"
+  #     - "!filename.js"
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest

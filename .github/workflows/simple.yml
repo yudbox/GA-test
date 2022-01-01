@@ -2,7 +2,7 @@
 
 name: Shell Commands
 # выбираем при каком действии будут запускаться экшн, можно писать on: [push, pull]
-on: [push]
+on: [pull_request]
 
 jobs:
   run-shell-command:

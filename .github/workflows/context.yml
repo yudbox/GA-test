@@ -1,6 +1,6 @@
 name: Context file
 # documentation https://docs.github.com/en/actions/learn-github-actions/contexts
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   functions:

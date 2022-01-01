@@ -2,7 +2,24 @@ name: Docker container
 on: push
 
 jobs:
-  node-docker:
+  docker-in-steps:
+    runs-on: ubuntu-latest
+    container:
+      image: node:14-alpine
+    steps:
+      - name: log node version
+        run: node -v
+      - name: steps with docker-in-step
+        uses: docker://node:16-alpine
+        with:
+         entrypoint: 'bin/echo'
+         args: 'Hello world'
+      - name: steps with docker-in-syep2
+        uses: docker://node:16-alpine
+        with:
+         entrypoint: /usr/local/bin/node
+         args: -v
+  docker-in-service:
     runs-on: ubuntu-latest
     services:
       app:
@@ -13,7 +30,6 @@ jobs:
         image: mongo
         ports:
          - 27017:27017
-
     steps:
       - name: Post a user
         run: "curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\": \"Alex\",\"address\":\"lenina\"}'"

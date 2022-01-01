@@ -12,7 +12,7 @@ jobs:
       - name: steps with docker-in-step
         uses: docker://node:16-alpine
         with:
-         entrypoint: 'bin/echo'
+         entrypoint: '/bin/echo'
          args: 'Hello world'
       - name: steps with docker-in-syep2
         uses: docker://node:16-alpine

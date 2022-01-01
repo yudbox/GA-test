@@ -20,6 +20,8 @@ jobs:
          entrypoint: /usr/local/bin/node
          args: -v
       - uses: actions/checkout@v2
+      - name: Get files permissions
+        run: ls -la
       - name: Runs sh script
         uses: docker://node:12-alpine
         with:

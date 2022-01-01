@@ -24,7 +24,7 @@ jobs:
         uses: docker://node:16-alpine
         with:
          entrypoint: ./script.sh
-         args: "Some string inside script"
+         args: "Some"
   docker-in-service:
     runs-on: ubuntu-latest
     services:
